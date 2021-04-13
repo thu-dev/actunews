@@ -1,3 +1,14 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+index: # nom de la route
+    path: / # chemin de l'url apres http://localhost:8000
+    # Le controller a executer
+    controller: App\Controller\DefaultController::index
+
+contact:
+    path: /contact # ce qui donnera http://localhost:8000/contact
+    controller: App\Controller\DefaultController::contact
+
+#mentions legales
+mentions_legales:
+    path: page/mentions-legales
+    controller : App\Controller\DefaultController::mentionsLegales
+

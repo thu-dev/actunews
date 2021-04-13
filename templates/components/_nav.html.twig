@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">ActuNews</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-link" href="{{ path('index') }}">Accueil</a>
+            <a class="nav-link" href="{{ path('default_category', { 'alias' : 'politique' }) }}">Politique</a>
+            <a class="nav-link" href="{{ path('default_category', { 'alias' : 'economie' }) }}">Economie</a>
+            <a class="nav-link" href="{{ path('default_category', { 'alias'  : 'sante' }) }}">Santé</a>
+            <a class="nav-link" href="{{ path('default_category', { 'alias'  : 'sport' }) }}">Sports</a>
+            <a class="nav-link" href="{{ path('default_category', { 'alias'  : 'culture' }) }}">Culture</a>
+        </div>
+        <div class="navbar-nav ml-auto">
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                {# Dans cette condition mon user est connecte #}
+                    <a class="nav-link" href="#">Bonjour {{ app.user.firstname }}</a>
+                {% if is_granted('ROLE_AUTHOR') %}
+                <a class="nav-link" href="{{ path('post_create') }}">Rediger un article</a>
+                {% endif %}
+
+                <a class="nav-link" href="{{ path('app_logout') }}">Deconnexion</a>
+            {% else %}
+                {# Dans cette condition mon user est deconnecte #}
+                <a class="nav-link" href="{{ path('user_register') }}">Inscription</a>
+                <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+
+            {% endif %}
+        </div>
+    </div>
+</nav>

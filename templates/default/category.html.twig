@@ -1,0 +1,41 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    {{ category.name }}
+{%  endblock %}
+
+{% block body %}
+    <div class="p-3 mx-auto text-center">
+        <h1 class="display-4">{{ category.name }}</h1>
+    </div>
+
+    <div class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                {% for post in category.posts %}
+                    <div class="col-md-4 mt-4">
+                        <div class="card shadow-sm">
+                            <img src="{{ asset('uploads/images/' ~ post.image) }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ post.title }}</h5>
+                                <a href="{{ path('default_post', {
+                                    'category' : post.category.alias,
+                                    'alias' : post.alias,
+                                    'id' : post.id
+                                })}}" class="btn btn-primary">Lire la suite</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="col">
+                        <div class="alert alert-info">
+                            Pas d'article pour le moment
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

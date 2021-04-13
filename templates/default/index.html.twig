@@ -1,0 +1,37 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Page d'accueil
+{%  endblock %}
+
+{% block body %}
+
+    {# {{ dump(posts) }} #}
+
+    <div class="p-3 mx-auto text-center">
+        <h1 class="display-4">Actunews</h1>
+    </div>
+
+    <div class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                {% for post in posts %}
+                <div class="col-md-4 mt-4">
+                    <div class="card shadow-sm">
+                        <img src="{{ asset('uploads/images/' ~ post.image) }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ post.title }}</h5>
+                            <a href="{{ path('default_post', {
+                                'category' : post.category.alias,
+                                'alias' : post.alias,
+                                'id' : post.id
+                            })}}" class="btn btn-primary">Lire la suite</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
